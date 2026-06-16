@@ -1,0 +1,98 @@
+body {
+  background-color: black;
+}
+
+#personalBest {
+  display:flex;
+  margin-left: 1000px;
+  position: relative;
+  color: white;
+  gap: 10px;
+}
+
+#WPM {
+  display:inline-flex;
+  position: relative;
+  color: white;
+  gap: 50px;
+}
+#difficultyAndMode {
+  display:flex;
+  position: relative;
+  margin-left: 200px;
+  gap: 30px;
+}
+
+.divider {
+  width: 1px;
+  background-color: #ccc;
+  margin: 0 0px;
+  align-self: stretch; /* Ensures it spans the container height */
+  margin-top: 10px;
+}
+
+#button {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  height: 20px;
+  margin-top: 16px;
+  background-color: transparent;
+  border-radius: 10px;
+  color: white;
+  
+}
+#button button {
+  background-color: transparent;
+  color: white;
+
+}
+
+#modeButton {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  height: 20px;
+  margin-top: 16px;
+  border-radius: 10px;
+}
+
+#modeButton button {
+  background-color: transparent;
+  color: white;
+
+}
+
+#textToType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top:100px;
+  color: white;
+}
+#startButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: blue;
+  border-radius: 10px ;
+  color: white;
+}
+
+#text {
+  color: white;
+  filter: blur(5px);
+  font-size: 24px;
+}
+
+#display-text {
+  color: white;
+  font-size: 24px;
+   filter: blur(5px);
+}
+
+#Timer {
+  display:flex;
+  position: relative;
+  font-size: 16;
+}

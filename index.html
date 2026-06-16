@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Word Typing Website</title>
+</head>
+<body>
+    <img src="assets\images\logo-large.svg" alt="icon">
+
+    <div id="personalBest">
+    <img src="assets\images\icon-personal-best.svg" alt="icon">
+    <p>Personal best:</p></div>
+
+    <div id="WPM">
+      <p>WPM: </p>
+        <div style="display: flex; height: 30px;">
+        <div class="divider"></div>
+    </div>
+
+    <p >Accuracy: </p>
+      <div style="display: flex; height: 30px;">
+        <div class="divider"></div>
+      </div>
+
+      
+    <p>Time: </p>
+        <p id="Timer">0:60</p>
+      
+      
+    
+    <div id="difficultyAndMode">
+        <p>Difficulty: </p>
+         <div id="button">
+            <button id="easy">Easy</button>
+            <button id="medium">Medium</button>
+            <button id="hard">Hard</button>
+         </div>
+            <div style="display: flex; height: 30px;">
+            <div class="divider"></div>
+          </div>
+    <p >Mode: </p>
+            <div id="modeButton">
+             <button id="timedButton">Timed (60s)</button>
+             <button id="PassageButton">Passage</button>
+            </div>
+
+        </div>
+      </div>
+      <hr>
+      <div id="textToType">
+      <button id="startButton">Start Typing Test</button>
+      <p>or click the text and start typing</p>
+      </div>
+
+    <div id="display-text"></div>
+
+        <script src="behaviour.js"></script>
+  </body>
+</html>
