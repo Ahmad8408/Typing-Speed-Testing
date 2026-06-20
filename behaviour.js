@@ -1,5 +1,5 @@
-// this function will hide the text and remove the blur effect
-
+/*------this function will hide the text and-------------------------
+-------- remove the blur effect--------------------------------------*/
 let startButton = document.getElementById("startButton");
 let textToType = document.getElementById("textToType");
 
@@ -9,13 +9,9 @@ startButton.addEventListener("click", function() {
 });
 
 
-
-
-
-
-
-// This function will handle the fetching and displaying of text based 
-// on difficulty
+/*------------This function will handle the fetching and-------------
+displaying of text based on difficulty-----------------------*/
+function differentButtons() {
 // 1. Declare your HTML element references ONCE at the top
 const easyButton = document.getElementById('easy');
 const mediumButton = document.getElementById('medium');
@@ -61,7 +57,7 @@ function loadTextByDifficulty(difficulty, clickedButton) {
 easyButton.addEventListener('click', () => loadTextByDifficulty('easy', easyButton));
 mediumButton.addEventListener('click', () => loadTextByDifficulty('medium', mediumButton));
 hardButton.addEventListener('click', () => loadTextByDifficulty('hard', hardButton));
-
+}
 
 
 
@@ -120,6 +116,7 @@ timedButton.addEventListener("click", function () {
   
   // Just run it! The function itself now guards against duplicate timers.
   countTime(); 
+  differentButtons()
 });
 
 // When Passage is clicked
@@ -129,4 +126,89 @@ passageButton.addEventListener("click", function () {
   
   // Call our new reset function
   stopAndResetTime();
+  differentButtons()
 });
+
+
+
+
+//new function
+
+ let typed = "";
+ let startTime = null;
+ let wpm = 0;
+
+document.addEventListener("keydown", (e) => {
+  if (!startTime) {
+    startTime = Date.now(); // start timer on first keypress
+  }
+
+  if (e.key === "Backspace") {
+    typed = typed.slice(0, -1);
+  }
+  else if (e.key.length === 1) {
+    typed += e.key;
+  }
+
+  render();
+});
+
+function calculateWPM(text) {
+  const words = text.length / 5;
+  
+  return Math.round(words) || 0;
+}
+
+function calculateAccuracy(sentence, typed) {
+  let correct = 0;
+
+  for (let i = 0; i < sentence.length; i++) {
+    if (sentence[i] === typed[i]) {
+      correct++;
+    }
+  }
+
+  return Math.round((correct / sentence.length) * 100) || 0;
+}
+
+
+function render() {
+  const container = document.getElementById("display-text");
+
+  const sentence = container.textContent;
+
+  container.innerHTML = "";
+
+  for (let i = 0; i < sentence.length; i++) {
+    const span = document.createElement("span");
+
+    const typedChar = typed[i];
+    const actualChar = sentence[i];
+
+    if (typedChar == null) {
+      span.className = "pending";
+    } else if (typedChar === actualChar) {
+      span.className = "correct";
+    } else {
+      span.className = "incorrect";
+    }
+
+    span.textContent = actualChar;
+    container.appendChild(span);
+  }
+
+  // ⏱ calculate time
+  const currentTime = (Date.now() - startTime) / 1000;
+
+  // ⚡ update WPM
+  wpm = calculateWPM(typed, currentTime);
+
+  // show it
+  document.getElementById("WPM").textContent = wpm;
+
+  const accuracy = calculateAccuracy(sentence, typed);
+document.getElementById("accuracy").textContent = accuracy + "%";
+}
+
+
+

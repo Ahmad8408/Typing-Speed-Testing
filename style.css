@@ -2,19 +2,24 @@ body {
   background-color: black;
 }
 
+#mainLogo {
+  margin-left: 50px;
+}
+
 #personalBest {
   display:flex;
-  margin-left: 1000px;
+  margin-left: 1100px;
   position: relative;
   color: white;
   gap: 10px;
 }
 
-#WPM {
+#wpm-display {
   display:inline-flex;
   position: relative;
   color: white;
-  gap: 50px;
+  gap: 30px;
+  margin-left: 50px;
 }
 #difficultyAndMode {
   display:flex;
@@ -95,4 +100,16 @@ body {
   display:flex;
   position: relative;
   font-size: 16;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.pending {
+  color: gray;
 }
