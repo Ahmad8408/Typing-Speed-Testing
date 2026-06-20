@@ -1,12 +1,20 @@
 /*------this function will hide the text and-------------------------
 -------- remove the blur effect--------------------------------------*/
+
+  buttonSetup();
+
 let startButton = document.getElementById("startButton");
 let textToType = document.getElementById("textToType");
 
 startButton.addEventListener("click", function() {
+  if (!modeSelected){
+  alert ("Please Select Mode First");
+  return;
+}
   textToType.style.display = "none";
   document.getElementById("display-text").style.filter = "none";
 });
+
 
 
 /*------------This function will handle the fetching and-------------
@@ -103,31 +111,42 @@ function stopAndResetTime() {
 }
 
 // --- BUTTONS SETUP ---
+let modeSelected = false;
+
+function buttonSetup() {
 const timedButton = document.getElementById("timedButton");
 const passageButton = document.getElementById("PassageButton");
 
-passageButton.style.backgroundColor = "blue";
+passageButton.style.backgroundColor = "black";
 timedButton.style.backgroundColor = "black";
 
 // When Timed is clicked
 timedButton.addEventListener("click", function () {
+   modeSelected = true; // ✅ user selected a mode
+
   timedButton.style.backgroundColor = "blue";
   passageButton.style.backgroundColor = "black";
   
+  
   // Just run it! The function itself now guards against duplicate timers.
   countTime(); 
-  differentButtons()
+  differentButtons();
+  
 });
 
 // When Passage is clicked
 passageButton.addEventListener("click", function () {
+   modeSelected = true; // ✅ user selected a mode
+
   passageButton.style.backgroundColor = "blue";
   timedButton.style.backgroundColor = "black";
   
   // Call our new reset function
   stopAndResetTime();
-  differentButtons()
+  differentButtons();
+ 
 });
+}
 
 
 
