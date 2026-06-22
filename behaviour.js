@@ -1,16 +1,17 @@
 /*------this function will hide the text and-------------------------
 -------- remove the blur effect--------------------------------------*/
 
-  buttonSetup();
+buttonSetup();
+
 
 let startButton = document.getElementById("startButton");
 let textToType = document.getElementById("textToType");
 
 startButton.addEventListener("click", function() {
   if (!modeSelected){
-  alert ("Please Select Mode First");
+  alert ("Please Select Mode First And Difficulty");
   return;
-}
+} 
   textToType.style.display = "none";
   document.getElementById("display-text").style.filter = "none";
 });
@@ -19,12 +20,14 @@ startButton.addEventListener("click", function() {
 
 /*------------This function will handle the fetching and-------------
 displaying of text based on difficulty-----------------------*/
+
 function differentButtons() {
 // 1. Declare your HTML element references ONCE at the top
 const easyButton = document.getElementById('easy');
 const mediumButton = document.getElementById('medium');
 const hardButton = document.getElementById('hard');
 const displayText = document.getElementById('display-text');
+
 
 // 2. Create ONE reusable function to handle the fetching and displaying
 function loadTextByDifficulty(difficulty, clickedButton) {
@@ -51,21 +54,30 @@ function loadTextByDifficulty(difficulty, clickedButton) {
       // Grab a random paragraph
       const randomIndex = Math.floor(Math.random() * paragraphs.length);
       const randomText = paragraphs[randomIndex].text;
+
+      // RESET EVERYTHING
+      typed = "";
+      startTime = null;
+      wpm = 0
       
       // Display the text
       displayText.textContent = randomText;
     })
+
     .catch(error => {
       console.error('Error fetching the JSON data:', error);
-      displayText.textContent = 'Failed to load text. Please try again.';
+      displayText.textContent = "Error loading text";
     });
+  
 }
 
 // 3. Add simple event listeners that pass the difficulty to the function
 easyButton.addEventListener('click', () => loadTextByDifficulty('easy', easyButton));
 mediumButton.addEventListener('click', () => loadTextByDifficulty('medium', mediumButton));
 hardButton.addEventListener('click', () => loadTextByDifficulty('hard', hardButton));
+
 }
+
 
 
 
@@ -153,9 +165,11 @@ passageButton.addEventListener("click", function () {
 
 //new function
 
- let typed = "";
+ typed = "";
  let startTime = null;
  let wpm = 0;
+
+ 
 
 document.addEventListener("keydown", (e) => {
   if (!startTime) {
@@ -194,6 +208,8 @@ function calculateAccuracy(sentence, typed) {
 function render() {
   const container = document.getElementById("display-text");
 
+// let currentSentence = "";
+
   const sentence = container.textContent;
 
   container.innerHTML = "";
@@ -228,6 +244,5 @@ function render() {
   const accuracy = calculateAccuracy(sentence, typed);
 document.getElementById("accuracy").textContent = accuracy + "%";
 }
-
 
 
