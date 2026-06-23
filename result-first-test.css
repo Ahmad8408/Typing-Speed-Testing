@@ -1,0 +1,73 @@
+body {
+    background-color: black;
+}
+.main-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
+}
+
+#personal-best {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 50px;
+}
+
+#tick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    color: aliceblue;
+}
+#tick p {
+    margin: 5px 0;   /* reduces spacing */
+}
+
+#tick h1 {
+    margin-bottom: 5px; /* optional fine-tuning */
+}
+
+#pattern-star-2 {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    margin-left: 150px;
+    margin-top: 150px;
+}
+
+#boxes {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    color: aliceblue;
+}
+
+#boxes p {
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;  /* Makes the corners round */
+    border: 1px solid white;
+    margin-left: 10px;
+}
+
+#pattern-star-1 {
+    display: block;
+    position: absolute;
+    align-items: center;
+    margin-left: 1200px;
+}
+
+.button-container {
+    display: flex;
+    position:absolute;
+    margin-left: 630px;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 100px;
+}
+

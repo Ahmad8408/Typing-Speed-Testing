@@ -165,7 +165,7 @@ passageButton.addEventListener("click", function () {
 
 //new function
 
- typed = "";
+ let typed = "";
  let startTime = null;
  let wpm = 0;
 
@@ -243,6 +243,14 @@ function render() {
 
   const accuracy = calculateAccuracy(sentence, typed);
 document.getElementById("accuracy").textContent = accuracy + "%";
+
+// Check if typing is complete
+  if (typed === sentence) {
+
+    // Move to result page
+    window.location.href = "result-first-test.html";
+  }
 }
+
 
 
