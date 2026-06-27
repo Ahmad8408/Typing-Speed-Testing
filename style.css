@@ -2,16 +2,18 @@ body {
   background-color: black;
 }
 
-#mainLogo {
-  margin-left: 50px;
+.main-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
 }
 
-#personalBest {
-  display:flex;
-  margin-left: 1100px;
-  position: relative;
-  color: white;
-  gap: 10px;
+#personal-best {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 50px;
 }
 
 #wpm-display {
@@ -20,6 +22,7 @@ body {
   color: white;
   gap: 30px;
   margin-left: 50px;
+  margin-top: 50px;
 }
 #difficultyAndMode {
   display:flex;
@@ -65,7 +68,10 @@ body {
 #modeButton button {
   background-color: transparent;
   color: white;
+}
 
+#modeButton p {
+  margin-bottom: 100px;
 }
 
 #textToType {
@@ -112,4 +118,31 @@ body {
 
 .pending {
   color: gray;
+}
+
+@media (max-width: 768px) {
+
+    #main-logo {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #personal-best {
+        margin-right: 0;
+    }
+    #wpm-display p {
+       width: 50px;
+       height: 50px;
+       border: solid 1px white;
+       border-radius: 5px;
+      flex-direction: column;
+    }
+
+    #Mode {
+      display: none;
+    }
+
+    #difficultyAndMode p {
+      display: none;
+    }
 }

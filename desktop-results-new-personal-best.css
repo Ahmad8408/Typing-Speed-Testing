@@ -1,17 +1,16 @@
 body {
     background-color: black;
-    padding:20px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 20px;
     zoom: 0.8;
 }
 
-.main-logo{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
+.main-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: aliceblue;
 }
 
 #personal-best {
@@ -19,31 +18,23 @@ body {
     align-items: center;
     gap: 10px;
     margin-right: 50px;
-    color: aliceblue;
 }
 
-#tick {
+#new-pb {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     color: aliceblue;
 }
-#tick p {
+#new-pb p {
     margin: 5px 0;   /* reduces spacing */
 }
 
-#tick h1 {
+#new-pb h1 {
     margin-bottom: 5px; /* optional fine-tuning */
 }
 
-#pattern-star-2 {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    margin-left: 150px;
-    margin-top: 150px;
-}
 
 #boxes {
     display: flex;
@@ -61,13 +52,6 @@ body {
     padding: 20px;
 }
 
-#pattern-star-1 {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    margin-left: 80% ;
-}
-
 .button-container {
     display: flex;
     align-items: center;
@@ -79,6 +63,9 @@ body {
     padding: 20px;
 }
 
+#pattern-confetti {
+    margin-top: 10px;
+}
 
 @media (max-width: 768px) {
 
@@ -91,23 +78,22 @@ body {
         margin-right: 0;
     }
 
-     #boxes{
-        flex-direction:column;
-        width:100%;
+    #boxes {
+        flex-direction: column;
     }
 
-    #boxes p{
-        max-width:300px;
-        width:90%;
-    }
-}
-
-@media (max-width: 600px) {
-     #pattern-star-1{
-        display:none;
+    #boxes p {
+        width: 90%;
+        max-width: 300px;
+        margin-left: 0;
     }
 
-     #pattern-star-2{
-        display:none;
+    #new-pb {
+        margin-top: 50px;
+    }
+
+    #pattern-confetti img {
+        width: 100%;
+        height: auto;
     }
 }
