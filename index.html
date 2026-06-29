@@ -16,46 +16,64 @@
         </div>
     </div>
 
-    <div id = "wpm-display">
-        <P>WPM:</P> 
-        <p id = 'WPM'>0</p>
-      
-        <div style="display: flex; height: 30px;">
-          <div class="divider"></div>
-        </div>
+          <div class="stats-row">
 
-      
-      <p >Accuracy: </p> <p id="accuracy">0</p>
-        <div style="display: flex; height: 30px;">
-          <div class="divider"></div>
-        </div>
+          <div id="wpm-display">
 
-        
-      <p>Time: </p>
-          <p id="Timer">60</p>
-        
-        
-      
-      <div id="difficultyAndMode">
-          <p>Difficulty: </p>
-          <div id="button">
-              <button id="easy">Easy</button>
-              <button id="medium">Medium</button>
-              <button id="hard">Hard</button>
-          </div>
-              <div style="display: flex; height: 30px;">
-              <div class="divider"></div>
-            </div>
-      
-            <p id="Mode">Mode: </p>
-              <div id="modeButton">
-                
-              <button id="timedButton">Timed (60s)</button>
-              <button id="PassageButton">Passage</button>
+              <p>WPM:</p>
+              <p id="WPM">0</p>
+
+              <div style="display:flex;height:30px;">
+                  <div class="divider"></div>
               </div>
 
-        </div>
-    </div>
+              <p>Accuracy:</p>
+              <p id="accuracy">0</p>
+
+              <div style="display:flex;height:30px;">
+                  <div class="divider"></div>
+              </div>
+
+              <p>Time:</p>
+              <p id="Timer">60</p>
+
+          </div>
+
+          <div id="difficultyAndMode">
+
+              <p>Difficulty:</p>
+
+              <div id="button">
+                  <button id="easy">Easy</button>
+                  <button id="medium">Medium</button>
+                  <button id="hard">Hard</button>
+              </div>
+
+              <select id="difficultyDropdown">
+                  <option>Easy</option>
+                  <option>Medium</option>
+                  <option selected>Hard</option>
+              </select>
+
+              <div style="display:flex;height:30px;">
+                  <div class="divider"></div>
+              </div>
+
+              <p id="Mode">Mode:</p>
+
+              <div id="modeButton">
+                  <button id="timedButton">Timed (60s)</button>
+                  <button id="PassageButton">Passage</button>
+              </div>
+
+              <select id="modeDropdown">
+                  <option selected>Timed (60s)</option>
+                  <option>Passage</option>
+              </select>
+
+          </div>
+
+      </div>
       <hr>
       <div id="textToType">
       <button id="startButton">Start Typing Test</button>
