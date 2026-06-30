@@ -1,7 +1,8 @@
-/*------this function will hide the text and-------------------------
--------- remove the blur effect--------------------------------------*/
+/*--------------------------------this function will hide the text and-------------------------
+-----------------------------------remove the blur effect--------------------------------------*/
 
 buttonSetup();
+
 
 
 let startButton = document.getElementById("startButton");
@@ -18,71 +19,93 @@ startButton.addEventListener("click", function() {
 
 
 
-/*------------This function will handle the fetching and-------------
-displaying of text based on difficulty-----------------------*/
-
+// /*------------------------------------This function will handle the fetching and---------------------
+// --------------------------------------displaying of text based on difficulty-----------------------*/
 function differentButtons() {
-// 1. Declare your HTML element references ONCE at the top
-const easyButton = document.getElementById('easy');
-const mediumButton = document.getElementById('medium');
-const hardButton = document.getElementById('hard');
-const displayText = document.getElementById('display-text');
 
+    const easyButton = document.getElementById("easy");
+    const mediumButton = document.getElementById("medium");
+    const hardButton = document.getElementById("hard");
+    const difficultyDropdown = document.getElementById("difficultyDropdown");
+    const displayText = document.getElementById("display-text");
 
-// 2. Create ONE reusable function to handle the fetching and displaying
-function loadTextByDifficulty(difficulty, clickedButton) {
-  // Reset all button backgrounds to default first (optional, but good practice)
-  easyButton.style.backgroundColor = "";
-  mediumButton.style.backgroundColor = "";
-  hardButton.style.backgroundColor = "";
+    function loadTextByDifficulty(difficulty, clickedButton) {
 
-  // Highlight the clicked button green
-  clickedButton.style.backgroundColor = "green";
+        // Reset button colors
+        easyButton.style.backgroundColor = "black";
+        mediumButton.style.backgroundColor = "black";
+        hardButton.style.backgroundColor = "black";
 
-  // Fetch the data
-  fetch('data.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Use brackets [difficulty] to dynamically grab "easy", "medium", or "hard"
-      const paragraphs = data[difficulty];
-      
-      // Grab a random paragraph
-      const randomIndex = Math.floor(Math.random() * paragraphs.length);
-      const randomText = paragraphs[randomIndex].text;
+        // Highlight selected button
+        clickedButton.style.backgroundColor = "green";
 
-      // RESET EVERYTHING
-      typed = "";
-      startTime = null;
-      wpm = 0
-      
-      // Display the text
-      displayText.textContent = randomText;
-    })
+        // Keep dropdown synchronized
+        if (difficulty === "easy") {
+            difficultyDropdown.value = "Easy";
+        } else if (difficulty === "medium") {
+            difficultyDropdown.value = "Medium";
+        } else {
+            difficultyDropdown.value = "Hard";
+        }
 
-    .catch(error => {
-      console.error('Error fetching the JSON data:', error);
-      displayText.textContent = "Error loading text";
+        fetch("data.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                const paragraphs = data[difficulty];
+                const randomIndex = Math.floor(Math.random() * paragraphs.length);
+                const randomText = paragraphs[randomIndex].text;
+
+                // Reset everything
+                typed = "";
+                startTime = null;
+                wpm = 0;
+
+                displayText.textContent = randomText;
+            })
+            .catch(error => {
+                console.error("Error fetching JSON:", error);
+                displayText.textContent = "Error loading text";
+            });
+    }
+
+    // Desktop buttons
+    easyButton.addEventListener("click", () => {
+        loadTextByDifficulty("easy", easyButton);
     });
-  
+
+    mediumButton.addEventListener("click", () => {
+        loadTextByDifficulty("medium", mediumButton);
+    });
+
+    hardButton.addEventListener("click", () => {
+        loadTextByDifficulty("hard", hardButton);
+    });
+
+    // Mobile dropdown
+    difficultyDropdown.addEventListener("change", function () {
+
+        if (this.value === "Easy") {
+            loadTextByDifficulty("easy", easyButton);
+
+        } else if (this.value === "Medium") {
+            loadTextByDifficulty("medium", mediumButton);
+
+        } else if (this.value === "Hard") {
+            loadTextByDifficulty("hard", hardButton);
+        }
+    });
+
 }
 
-// 3. Add simple event listeners that pass the difficulty to the function
-easyButton.addEventListener('click', () => loadTextByDifficulty('easy', easyButton));
-mediumButton.addEventListener('click', () => loadTextByDifficulty('medium', mediumButton));
-hardButton.addEventListener('click', () => loadTextByDifficulty('hard', hardButton));
 
-}
-
-
-
-
-
-
+/*----------------------------------this function handle the counter 60 min-------------------------
+-------- ---------------------------when timed button is clicked--------------------------------------*/
 // 1. Move these variables OUTSIDE so they can be accessed globally
 let countdown = null; 
 let timeLeft = 60;
@@ -110,7 +133,8 @@ function countTime() {
 }
 
 
-
+/*--------------------------------------this function stop the time and-------------------------
+----------------------------------------reset it to 0 when user clicked passage button---------*/
 // Function to stop and reset the timer completely
 function stopAndResetTime() {
   if (countdown !== null) {
@@ -122,48 +146,61 @@ function stopAndResetTime() {
   console.log("Timer stopped and reset.");
 }
 
-// --- BUTTONS SETUP ---
+
+/*-------------------------------------Mode buttons when clicked turn blue-------------------------
+---------------------------------------and also call other function --------------------------------------*/
 let modeSelected = false;
 
 function buttonSetup() {
-const timedButton = document.getElementById("timedButton");
-const passageButton = document.getElementById("PassageButton");
+    const timedButton = document.getElementById("timedButton");
+    const passageButton = document.getElementById("PassageButton");
+    const modeDropdown = document.getElementById("modeDropdown");
 
-passageButton.style.backgroundColor = "black";
-timedButton.style.backgroundColor = "black";
+    // Initial appearance
+    timedButton.style.backgroundColor = "black";
+    passageButton.style.backgroundColor = "black";
+    modeDropdown.style.backgroundColor = "black";
 
-// When Timed is clicked
-timedButton.addEventListener("click", function () {
-   modeSelected = true; // ✅ user selected a mode
+    function selectTimedMode() {
+        modeSelected = true;
 
-  timedButton.style.backgroundColor = "blue";
-  passageButton.style.backgroundColor = "black";
-  
-  
-  // Just run it! The function itself now guards against duplicate timers.
-  countTime(); 
-  differentButtons();
-  
-});
+        timedButton.style.backgroundColor = "blue";
+        passageButton.style.backgroundColor = "black";
+        modeDropdown.style.backgroundColor = "blue";
+        modeDropdown.value = "Timed (60s)";
 
-// When Passage is clicked
-passageButton.addEventListener("click", function () {
-   modeSelected = true; // ✅ user selected a mode
+        countTime();
+        differentButtons();
+    }
 
-  passageButton.style.backgroundColor = "blue";
-  timedButton.style.backgroundColor = "black";
-  
-  // Call our new reset function
-  stopAndResetTime();
-  differentButtons();
- 
-});
+    function selectPassageMode() {
+        modeSelected = true;
+
+        passageButton.style.backgroundColor = "blue";
+        timedButton.style.backgroundColor = "black";
+        modeDropdown.style.backgroundColor = "blue";
+        modeDropdown.value = "Passage";
+
+        stopAndResetTime();
+        differentButtons();
+    }
+
+    timedButton.addEventListener("click", selectTimedMode);
+    passageButton.addEventListener("click", selectPassageMode);
+
+    modeDropdown.addEventListener("change", function () {
+        if (this.value === "Timed (60s)") {
+            selectTimedMode();
+        } else {
+            selectPassageMode();
+        }
+    });
 }
 
 
 
-
-//new function
+/*------This function assign blue color when right letter is press and red for -------------------------
+-------- wrong one and also when backspace is press it go back by one letter --------------------------*/
 
  let typed = "";
  let startTime = null;
@@ -232,23 +269,23 @@ function render() {
     container.appendChild(span);
   }
 
-  // ⏱ calculate time
+  //-----------------------------------here calculate time-----------------------------------------
   const currentTime = (Date.now() - startTime) / 1000;
 
-  // ⚡ update WPM
+  //--------------------------------------here update WPM-------------------------------------------
   wpm = calculateWPM(typed, currentTime);
 
-  // show it
+  //-------------------------------------here show wpm----------------------------------------------
   document.getElementById("WPM").textContent = wpm;
 
   const accuracy = calculateAccuracy(sentence, typed);
 document.getElementById("accuracy").textContent = accuracy + "%";
 
-// Check if typing is complete
+//---------------------------------here check if typing is complete------------------------------------
   if (typed === sentence) {
 
-    // Move to result page
-    window.location.href = "result-first-test.html";
+    //-----------------------------Move to result page--------------------------------------------------
+    window.location.href = "desktop-results-first-test.html";
   }
 }
 

@@ -49,11 +49,12 @@
                   <button id="hard">Hard</button>
               </div>
 
-              <select id="difficultyDropdown">
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option selected>Hard</option>
-              </select>
+            <select id="difficultyDropdown">
+                <option value="" selected disabled>Select Difficulty</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
 
               <div style="display:flex;height:30px;">
                   <div class="divider"></div>
@@ -62,12 +63,14 @@
               <p id="Mode">Mode:</p>
 
               <div id="modeButton">
+                   
                   <button id="timedButton">Timed (60s)</button>
                   <button id="PassageButton">Passage</button>
               </div>
 
               <select id="modeDropdown">
-                  <option selected>Timed (60s)</option>
+                    <option value="" selected disabled>Select Mode</option>
+                  <option>Timed (60s)</option>
                   <option>Passage</option>
               </select>
 
